@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.demo.springbootmybatisdemo.mapper.UserInfoMapper">
+
+    <!-- 表字段 -->
+    <sql id="UserInfoColumns">
+        a.user_id AS userId,
+        a.user_name AS userName,
+        a.mail AS mail,
+        a.phone AS phone,
+        a.address AS address
+    </sql>
+
+    <select id="getUserInfoById" resultType="UserInfo">
+        SELECT
+        <include refid="UserInfoColumns"/>
+        FROM user_info a
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="findList" resultType="UserInfo">
+        SELECT
+        <include refid="UserInfoColumns"/>
+        FROM user_info a
+    </select>
+
+    <insert id="saveUser" parameterType="UserInfo">
+        INSERT INTO user_info (user_id,user_name,mail,phone,address)
+        VALUES (#{userId}, #{userName}, #{mail}, #{phone}, #{address})
+    </insert>
+
+    <insert id="batchSaveUsers" parameterType="UserInfo">
+        INSERT INTO user_info (user_id,user_name,mail,phone,address)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userId}, #{item.userName}, #{item.mail}, #{item.phone}, #{item.address})
+        </foreach>
+
+    </insert>
+
+    <update id="updateNameById">
+        UPDATE user_info SET user_name = #{userName}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateById" parameterType="UserInfo">
+        UPDATE user_info
+        <set>
+            <if test="userName != null and userName != ''">
+                user_name = #{userName},
+            </if>
+
+            <if test="mail != null and mail != ''">
+                mail = #{mail},
+            </if>
+
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+         </set>
+        WHERE user_id = #{userId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM user_info WHERE user_id = #{userId}
+    </delete>
+
+    <delete id="batchDelByIds" parameterType="java.util.List">
+        DELETE FROM user_info WHERE
+        user_id in
+        <foreach collection="list" item="item" index="index" open="("
+                 separator="," close=")">
+            ( #{item} )
+        </foreach>
+    </delete>
+
+    <insert id="saveOrUpdate">
+        INSERT INTO user_info (user_id,user_name,mail,phone,address)
+        VALUES (#{userId}, #{userName}, #{mail}, #{phone}, #{address})
+        ON DUPLICATE KEY
+        UPDATE user_name = #{userName}, mail = #{mail}, phone = #{phone}, address = #{address}
+    </insert>
+
+</mapper>

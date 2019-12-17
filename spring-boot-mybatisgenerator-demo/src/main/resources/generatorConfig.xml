@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!-- classPathEntry 元素 用于添加运行类路径位置到类路径中，加载数据库驱动依赖的jar包 如果POM文件配置的话不需要再配置-->
+    <!-- <classPathEntry location="mysql-connector-java-5.1.38.jar" /> -->
+    <!-- <context> 元素用于指定生成一组对象的环境 -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+    	<commentGenerator>
+            <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
+            <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="suppressDate" value="true" />
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!-- 指定连接的目标数据库,需要数据库驱动，url，用户名，密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+            connectionURL="jdbc:mysql://127.0.0.1:3306/spring-boot-demo" userId="root"
+            password="root">
+        </jdbcConnection>
+        <!-- java 类型转换器：当false时，会根据数据库字段的精度和长度来生成对应的java数据类型，具体参照官方文档解释； 
+                    当为true时，会强制的将数据库类型为Decimal和Numeric的字段转换成 java.math.BigDecimal的类型 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.smile.demo.mybatisgenerator.model"
+            targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+            targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+            targetPackage="com.smile.demo.mybatisgenerator.dao"
+            targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+        <table tableName="user_info" domainObjectName="UserInfo"
+                enableCountByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="false"
+                enableUpdateByExample="false"
+        >
+        </table>
+
+    </context>
+</generatorConfiguration>
