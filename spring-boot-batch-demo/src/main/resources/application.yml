@@ -1,0 +1,12 @@
+spring:
+  batch:
+    job:
+      enabled: false
+    initialize-schema: never
+  datasource:
+    username: root
+    password: yang2020
+    url: jdbc:mysql://127.0.0.1:3306/springboot-batch-demo?useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  config: classpath:logback-spring.xml
