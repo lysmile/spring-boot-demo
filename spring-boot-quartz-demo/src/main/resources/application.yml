@@ -1,0 +1,13 @@
+spring:
+  main:
+    banner-mode: off
+  quartz:
+    job-store-type: memory
+    scheduler-name: smile-scheduler
+    properties:
+      org:
+        quartz:
+          jobStore:
+          threadPool:
+            # 线程个数
+            threadCount: 10
