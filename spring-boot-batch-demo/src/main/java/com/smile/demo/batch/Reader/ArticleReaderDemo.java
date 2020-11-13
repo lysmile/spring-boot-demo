@@ -57,25 +57,27 @@ public class ArticleReaderDemo {
      */
     public JdbcPagingItemReader<Article> getArticlePaging(String executedTime) {
         String lastExecutedTime = "";
+        Map<String, Object> parameterValues = new HashMap<>(2);
+        parameterValues.put("startTime", lastExecutedTime);
+        parameterValues.put("stopTime", executedTime);
         return new JdbcPagingItemReaderBuilder<Article>()
                 .dataSource(dataSource)
                 .name("getArticlePaging")
                 .fetchSize(10)
+                .parameterValues(parameterValues)
                 .pageSize(10)
                 .rowMapper(new ArticleMapper())
-                .queryProvider(articleProvider(lastExecutedTime, executedTime))
+                .queryProvider(articleProvider())
                 .build();
     }
 
-    private PagingQueryProvider articleProvider(String startTime, String stopTime) {
-        String whereCause = StringUtils.join("event_occurred_time >= '",
-                startTime, "' AND event_occurred_time < '", stopTime, "'");
+    private PagingQueryProvider articleProvider() {
         Map<String, Order> sortKeys = new HashMap<>(1);
         sortKeys.put("event_occurred_time", Order.ASCENDING);
         MySqlPagingQueryProvider provider = new MySqlPagingQueryProvider();
         provider.setSelectClause("title, content, event_occurred_time");
         provider.setFromClause("article");
-        provider.setWhereClause(whereCause);
+        provider.setWhereClause("event_occurred_time >= :startTime AND event_occurred_time < :stopTime");
         provider.setSortKeys(sortKeys);
         return provider;
     }
