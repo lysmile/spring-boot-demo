@@ -12,15 +12,15 @@ rocketmq:
     clientLogDir: logs/rocketmq_client
     # 日志级别
     clientLogLevel: WARN
-    namesrvAddr: 192.168.1.106:9876
+    namesrvAddr: 127.0.0.1:9876
     groupName: test
     retryTimesWhenSendAsyncFailed: 1
     sendMsgTimeout: 6000
-    brokerName: broker-106
+    brokerName: broker-a
   consumer:
     # 日志级别
     clientLogLevel: WARN
-    namesrvAddr: 192.168.1.106:9876
+    namesrvAddr: 127.0.0.1:9876
     groupName: test
     threadMax: 20
     threadMin: 10

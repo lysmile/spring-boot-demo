@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 /**
- * @author yangjunqiang
+ * @author smile
  */
 @Component
 public class ConsumerInit implements CommandLineRunner {

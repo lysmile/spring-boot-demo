@@ -1,7 +1,5 @@
 package com.smile.demo.rocketmq.consumer;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.smile.demo.rocketmq.consumer.config.ConsumerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
@@ -10,7 +8,6 @@ import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
-import org.apache.rocketmq.client.log.ClientLogger;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
 
@@ -19,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author yangjunqiang
+ * @author smile
  */
 @Slf4j
 public class ConsumerManager {

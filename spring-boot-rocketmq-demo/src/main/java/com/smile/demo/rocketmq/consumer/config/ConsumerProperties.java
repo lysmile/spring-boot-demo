@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * RocketMQ consumer配置项
- * @author yangjunqiang
+ * @author smile
  */
 @Component
 @ConfigurationProperties(prefix = "rocketmq.consumer")

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 程序启动时初始化Producer
- * @author yangjunqiang
+ * @author smile
  */
 @Configuration
 @Slf4j

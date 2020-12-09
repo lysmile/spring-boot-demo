@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * RocketMQ producer工具类
- * @author yangjunqiang
+ * @author smile
  */
 @Component
 @Slf4j

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 测试消息发送的接口
- * @author yangjunqiang
+ * @author smile
  */
 @RestController
 public class ProducerController {
