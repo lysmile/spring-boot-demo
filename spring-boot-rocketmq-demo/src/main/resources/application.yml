@@ -1,0 +1,26 @@
+spring:
+  main:
+    banner-mode: off
+server:
+  port: 1111
+logging:
+  config: classpath:logback-spring.xml
+# rocketMq配置项
+rocketmq:
+  # rocketmqClient日志路径，默认是系统登录用户的根目录
+  producer:
+    clientLogDir: logs/rocketmq_client
+    # 日志级别
+    clientLogLevel: WARN
+    namesrvAddr: 192.168.1.106:9876
+    groupName: test
+    retryTimesWhenSendAsyncFailed: 1
+    sendMsgTimeout: 6000
+    brokerName: broker-106
+  consumer:
+    # 日志级别
+    clientLogLevel: WARN
+    namesrvAddr: 192.168.1.106:9876
+    groupName: test
+    threadMax: 20
+    threadMin: 10
