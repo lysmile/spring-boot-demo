@@ -25,7 +25,7 @@ public class ConsumerManager {
     private static final String TAGS_SEP = "||";
     private static Map<String, String> subscription = new HashMap<String, String>(8) {
         {
-            // 订阅与取消订阅的事件
+            // 系统消息：订阅与取消订阅的事件
             put("sys", "subscribe||unsubscribe");
         }
     };
@@ -43,6 +43,10 @@ public class ConsumerManager {
         return MANAGER;
     }
 
+    /**
+     * 初始化Consumer，本示例初始化一个ConsumerGroup
+     * 后续所有的订阅与取消订阅都是在一个consumer实例下进行
+     */
     public void initConsumer(ConsumerProperties properties) throws MQClientException {
         // 设置client日志信息, producer初始化时已配置，此处不再配置
 //        System.setProperty(ClientLogger.CLIENT_LOG_ROOT, properties.getClientLogDir());
@@ -76,6 +80,12 @@ public class ConsumerManager {
     }
 
 
+    /**
+     * 订阅新的事件
+     * @param topic topic
+     * @param tags tags，支持多个tag订阅，格式：TagA||TagB
+     * @throws MQClientException
+     */
     public void subscribe(String topic, String tags) throws MQClientException {
         if (subscription.containsKey(topic)) {
             tags = StringUtils.join(subscription.get(topic), TAGS_SEP, tags);
@@ -85,6 +95,9 @@ public class ConsumerManager {
         log.info("!!刷新订阅, {}", subscription);
     }
 
+    /**
+     * 取消订阅
+     */
     public void unsubscribe(String topic, String tags) throws MQClientException {
         if (!subscription.containsKey(topic)) {
             log.error("topic is not found");
