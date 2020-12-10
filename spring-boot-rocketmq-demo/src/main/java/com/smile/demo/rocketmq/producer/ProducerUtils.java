@@ -1,6 +1,7 @@
 package com.smile.demo.rocketmq.producer;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.MQAdmin;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendCallback;
@@ -35,7 +36,7 @@ public class ProducerUtils {
      * 创建topic
      */
     public void createTopic(String topic) throws MQClientException {
-        producer.createTopic(brokerName, topic, 8);
+        ((MQAdmin) producer).createTopic(brokerName, topic, 8);
     }
 
 
