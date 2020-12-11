@@ -1,0 +1,8 @@
+server:
+    port: 1234
+logging:
+    config: classpath:logback-spring.xml
+demo:
+    user:
+        username: jwt
+        password: 123456
