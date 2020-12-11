@@ -1,0 +1,33 @@
+server:
+  port: 1111
+  servlet:
+    context-path: /api
+spring:
+  main:
+    banner-mode: 'off'
+logging:
+  config: classpath:logback-spring.xml
+knife4j:
+  # 开启增强配置
+  enable: true
+  # 开启Swagger的Basic认证功能,默认是false
+  basic:
+    enable: true
+    username: smile
+    password: 123456
+  # 配置文档路径
+  documents:
+    -
+      group: 0.1
+      name: 说明文档
+      # 某一个文件夹下所有的.md文件
+      locations: classpath:markdown/*
+    -
+      group: 0.1
+      name: 说明文档2
+      # 某一个文件夹下所有的.md文件
+      locations: classpath:markdown/*
+my:
+  security:
+    username: api
+    password: 123456
