@@ -1,0 +1,11 @@
+http:
+  pool:
+    # 连接超时
+    connectTimeout: 5000
+    connectionRequestTimeout: 5000
+    defaultMaxPerRoute: 20
+    # 最大连接数
+    maxTotal: 100
+    # 服务器返回数据(response)的时间
+    socketTimeout: 5000
+    validateAfterInactivity: 30000
