@@ -1,0 +1,8 @@
+hbase:
+  config:
+    hbase:
+      master: 192.168.1.11:600000
+      zookeeper:
+        property:
+          clientPort: 2181
+        quorum: 192.168.1.11,192.168.1.12,192.168.1.13∂
