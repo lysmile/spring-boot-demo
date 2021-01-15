@@ -1,0 +1,8 @@
+server:
+  port: 1111
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/spring-boot-demo?useSSL=false
+    username: root
+    password: yang2020
